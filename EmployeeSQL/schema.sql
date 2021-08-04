@@ -1,3 +1,10 @@
+-- DROP TABLE IF EXISTS salaries;
+-- DROP TABLE IF EXISTS dept_manager;
+-- DROP TABLE IF EXISTS dept_emp;
+-- DROP TABLE IF EXISTS employees;
+-- DROP TABLE IF EXISTS titles;
+-- DROP TABLE IF EXISTS departments;
+
 CREATE TABLE departments (
 	dept_no VARCHAR PRIMARY KEY
 	,dept_name VARCHAR
@@ -8,7 +15,6 @@ CREATE TABLE titles (
 	,title VARCHAR
 );
 
-DROP TABLE IF EXISTS employees; 
 CREATE TABLE employees (
 	emp_no INT PRIMARY KEY
 	,emp_title_id VARCHAR
@@ -39,17 +45,3 @@ CREATE TABLE salaries (
 	,salary INT
 	,FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
-
-
--- Data Analysis
--- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
-SELECT e.emp_no, last_name, first_name, sex, salary
-FROM employees e
-JOIN salaries s
-ON e.emp_no = s.emp_no;
-
---2. List first name, last name, and hire date for employees who were hired in 1986.
-SELECT first_name, last_name, hire_date
-FROM employees
-WHERE YEAR(TO_DATE(hire_date, 'DD/MM/YYYY')) = 1986;
-
